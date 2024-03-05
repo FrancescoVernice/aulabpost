@@ -44,7 +44,7 @@ class ArticleController extends Controller
             'subtitle' => 'required|unique:articles|min:5',
             'body' => 'required|min:10',
             'image' => 'image|required',
-            'category' => 'required',
+            'category_id' => 'required',
         ]);
 
         Article::create([
@@ -52,7 +52,7 @@ class ArticleController extends Controller
             'subtitle' => $request->subtitle,
             'body' => $request->body,
             'image' => $request->file('image')->store('public/images'),
-            'category_id' => $request->category,
+            'category_id' => $request->category_id,
             'user_id' => Auth::user()->id,
 
         ]);
@@ -107,5 +107,11 @@ class ArticleController extends Controller
         $user = User::find($id);
         $articles = Article::where('user_id', $id)->get();
         return view('article.by-editor', compact('articles', 'user'));
+    }
+    public function articleSearch(Request $request){
+        $query = $request->input('query');
+        $articles = Article::search($query)->where('is_accepted', true)->orderBy('created_at', 'desc')->get();
+        
+        return view('article.search-index', compact('articles', 'query'));
     }
 }

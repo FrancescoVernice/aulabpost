@@ -17,10 +17,7 @@
             <td>
                 <button class="btn btn-info text-white">Attiva {{$role}}</button>
             </td>
-        </tr>
-        @endforeach
-    </tbody>
-    <td>
+            <td>
         @switch($role)
         @case('amministratore')
         <a href="{{route('admin.setAdmin', compact('user'))}}" class="btn btn-info text-white">Attiva{{$role}}</a>
@@ -33,4 +30,8 @@
         @break
         @endswitch
     </td>
+
+        </tr>
+        @endforeach
+    </tbody>
 </table>

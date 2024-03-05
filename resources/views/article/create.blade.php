@@ -40,7 +40,7 @@
                    </div>
                    <div class="mb-3">
                     <label for="body" class="form-label">Categoria</label>
-                    <select name="category" id="category" class="form-control text-capitalize">
+                    <select name="category_id" id="category" class="form-control text-capitalize">
                         @foreach($categories as $category)
                          <option value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach

@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('SCOUT_DRIVER', 'algolia'),
+    'driver' => env('SCOUT_DRIVER', 'tntsearch'),
 
     /*
     |--------------------------------------------------------------------------
@@ -196,6 +196,19 @@ return [
             //         'query_by' => 'name'
             //     ],
             // ],
+        ],
+        'tntsearch' => [
+            'storage' => storage_path(),
+            'fuziness' => env('TNTSEARCH_FUZINESS', true),
+            'fuzzy' => [
+                'prefix_lenght' => 2,
+                'max_expansions' => 50,
+                'distance' => 2
+            ],
+            'asYouType' => false,
+            'searchBoolean' => env('TNTSEARCH_BOOLEAN', false),
+            'maxDocs' => env('TNTSEARCH_MAX_DOCS', 500),
+
         ],
     ],
 
